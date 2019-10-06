@@ -15,7 +15,7 @@
 </div>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 mb-3">
+        <div class="col-md-10 mb-3">
             {{ad.content | raw}}
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -45,14 +45,21 @@
         </div>
     </div>
     <div class="col">
+        {% set a = ad.author %}
         <div class="row">
-            <div class="col-4"><img src="http://placehold.it/64x64" alt=""></div>
+            <div class="col-3">
+                <a href="{{path('user_show',{'slug':a.slug})}} ">
+                    <img src="{{a.picture}}" alt="" class="avatar avatar-medium">
+                </a>
+            </div>
         </div>
         <div class="col">
-            <h3>Farid Boussetta</h3>
-            <span class="badge badge-primary">3 annonces</span>
+            <a href="{{path('user_show',{'slug':a.slug})}} ">
+            <h3>{{a.fullName}}</h3>
+            <span class="badge badge-primary">{{a.ads | length}} annonces</span>
+            </a>
         </div>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt provident perspiciatis, impedit eos laudantium corporis consequatur delectus esse at nobis?</p>
+        <p>{{a.description | raw}}</p>
     </div>
 
 </div>
