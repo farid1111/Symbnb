@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Ad;
 use Faker\Factory;
+use App\Entity\Role;
 use App\Entity\User;
 use App\Entity\Image;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -16,9 +17,26 @@ class AppFixtures extends Fixture
     public function __construct(UserPasswordEncoderInterface $encoder){
         $this->encoder= $encoder;
     }
+    
     public function load(ObjectManager $manager)
     {
-        $faker = Factory::create('FR-fr');
+        $faker = Factory::create('fr_FR');
+        
+        $adminRole = new Role();
+        $adminRole->setTitle('ROLE_ADMIN');
+        $manager->persist($adminRole);
+        
+        $adminUser = new User();
+        $adminUser->setFirstName('Farid')
+                 ->setLastName('Boussetta')
+                 ->setEmail('farid@mail.com')
+                 ->setHash($this->encoder->encodePassword($adminUser,'password'))
+                 ->setPicture('http://avatars.io/twitter/LiiorC')
+                 ->setIntroduction($faker->sentence())
+                 ->setDescription('<p>'.join('</p><p>',$faker->paragraphs(3)).'</p>')
+                 ->addUserRole($adminRole);
+        $manager->persist($adminUser);
+        
         $users=[];
         $genres=['male','female'];
         //nous gerons les users

@@ -10,6 +10,7 @@ use App\Form\PasswordUpdateType;
 use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -63,6 +64,7 @@ class AccountController extends AbstractController
     
     /**
      * @Route("/account/profile", name="account_profile")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
@@ -88,6 +90,7 @@ class AccountController extends AbstractController
 
     /**
      * @Route("/account/password-update", name="account_password")
+     * @IsGranted("ROLE_USER")
      * 
      * @return Response
      */
