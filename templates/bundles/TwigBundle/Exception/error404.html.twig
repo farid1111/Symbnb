@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page inttrouvable !{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Oups! Page introuvable</h1>
+    <p>La page que vous avez demandé n'existe pas !</p>
+    <a class="btn btn-primary" href="{{path('home')}}">Retour a l'accueil</a>
+
+</div>
+{% endblock %}

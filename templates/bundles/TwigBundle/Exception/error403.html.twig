@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+{% block title %}Page interdite !{% endblock %}
+{% block body %}
+<div class="container">
+    <h1>Page interdite</h1>
+    <div class"alert alert-danger">
+        <p>La page que vous avez demandé n'est pas autorisée !</p> 
+    </div>
+    <a class="btn btn-primary" href="{{path('home')}}">Retour a l'accueil</a>
+
+</div>
+{% endblock %}
