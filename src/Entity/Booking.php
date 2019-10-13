@@ -34,7 +34,7 @@ class Booking
     /**
      * @ORM\Column(type="datetime")
      * @Assert\Date(message="Attention la date doit être au bon format")
-     * @Assert\GreaterThan("today",message="Selectionnez une date valide")
+     * @Assert\GreaterThan("today",message="Selectionnez une date valide",groups={"front"})
      */
     private $startDate;
 
@@ -59,6 +59,7 @@ class Booking
      * Callback
      * 
      * @ORM\PrePersist
+     * @ORM\PreUpdate
      *
      * @return void
      */

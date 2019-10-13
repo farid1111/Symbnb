@@ -2,8 +2,12 @@
     <div class="col-md-4 ">
         <div class="card bg-light mb-3">
             <div class="card-header text-center">
-                {{ad.rooms}} chambres, <strong>{{ad.price}}&euro; / nuits</strong> <br>
-                <small>Pas encore noté</small>
+                {{ad.rooms}} chambres, <strong>{{ad.price | numer_format('2',',',' ')}}&euro; / nuits</strong> <br>
+                {% if ad.comments|length >0 %}
+                    {% include "layout/rating.html.twig" with {'rating': ad.avgRatings} %}
+                {% else %}
+                    <small>Pas encore noté</small>
+                {% endif %}
             </div>
             <a href="{{url}} ">
                 <img src="{{ad.coverImage}} " alt="image appart" style="height:200px; width: 100%; display: block">
