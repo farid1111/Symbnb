@@ -2,7 +2,7 @@
     <div class="col-md-4 ">
         <div class="card bg-light mb-3">
             <div class="card-header text-center">
-                {{ad.rooms}} chambres, <strong>{{ad.price | numer_format('2',',',' ')}}&euro; / nuits</strong> <br>
+                {{ad.rooms}} chambres, <strong>{{ad.price | number_format('2',',',' ')}}&euro; / nuits</strong> <br>
                 {% if ad.comments|length >0 %}
                     {% include "layout/rating.html.twig" with {'rating': ad.avgRatings} %}
                 {% else %}
